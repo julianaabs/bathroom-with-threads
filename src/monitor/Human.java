@@ -1,8 +1,9 @@
 package monitor;
 
+import java.lang.Thread;
 import java.util.Random;
 
-public class Human {
+public class Human extends Thread {
 	private char gender; // 'M' == Male or 'F' to female
 	private int timeToFinish;
 
@@ -20,6 +21,7 @@ public class Human {
 		return this.gender;
 	}
 
+	@Override
 	public void run() {
 		Random randomGenerator = new Random();
 		int randomInt = randomGenerator.nextInt(10000);

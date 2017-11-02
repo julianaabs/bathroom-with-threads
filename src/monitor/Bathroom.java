@@ -27,6 +27,8 @@ public class Bathroom {
 	*/
 	private char genderTime;
 	
+	private boolean GenderTransition;
+	
 	BathroomThread callNextHuman;
 	BathroomThread changeGender;
 
@@ -34,7 +36,10 @@ public class Bathroom {
 	/**
 	*
 	*/
-	Bathroom(int capacity) {
+	Bathroom(int capacity, char gender) {
+		this.GenderTransition = false;
+		this.usingNow = 0;
+		this.genderTime = gender;
 		this.capacity = capacity;
 	    this.queueMale = new ArrayList<Human>();
 	    this.queueFemale = new ArrayList<Human>();
@@ -48,15 +53,23 @@ public class Bathroom {
 	*
 	*/
 	public synchronized void callNext() {
+		if(GenderTransition) {
+			while(this.GenderTransition && this.usingNow != 0) {
+				continue;
+			}
+			this.GenderTransition = false;
+		}
 		if(this.capacity > this.usingNow && this.genderTime == 'M') {
-			// remove objeto da fila de homens.
-		    // chama metodo "useBathroom" do objeto.
-		    // incrementa em mais 1 o valor de "usingNow".
+			Human h = this.queueMale.get(0);
+			this.queueMale.remove(0);
+			h.start();
+			this.usingNow++;
 		}
 		if(this.capacity > this.usingNow && this.genderTime == 'F') {
-		    // remove objeto da fila de mulheres.
-		    // chama metodo "useBathroom" do objeto.
-			// incrementa em mais 1 o valor de "usingNow".
+			Human h = this.queueFemale.get(0);
+			this.queueMale.remove(0);
+			h.start();
+			this.usingNow++;
 		}
 	}
 	
@@ -70,9 +83,11 @@ public class Bathroom {
 	public synchronized void changeGendeTimer() {
 	    if(this.genderTime == 'M') {
 	      this.genderTime= 'F';
+	      this.GenderTransition = true;
 	    }
 	    else {
 	      this.genderTime= 'M';
+	      this.GenderTransition = true;
 	    }
 	}
 }
