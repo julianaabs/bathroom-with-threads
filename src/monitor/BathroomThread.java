@@ -24,7 +24,7 @@ public class BathroomThread extends Thread {
 			// change gender
 			while(true) {
 				try {
-					Thread.sleep(4000);
+					Thread.sleep(10000);
 				}
 				catch(Exception e) {
 					e.getMessage();

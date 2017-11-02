@@ -26,17 +26,24 @@ public class Bathroom {
 	*
 	*/
 	private char genderTime;
-	
+	/**
+	*
+	*/
 	private boolean GenderTransition;
-	
+	/**
+	*
+	*/
 	BathroomThread callNextHuman;
+	/**
+	*
+	*/
 	BathroomThread changeGender;
 
 
 	/**
 	*
 	*/
-	Bathroom(int capacity, char gender) {
+	public Bathroom(int capacity, char gender) {
 		this.GenderTransition = false;
 		this.usingNow = 0;
 		this.genderTime = gender;
@@ -46,6 +53,9 @@ public class Bathroom {
 	    
 	    this.callNextHuman = new BathroomThread(this, 1);
 	    this.changeGender = new BathroomThread(this, 2);
+	    
+	    this.callNextHuman.start();
+	    this.changeGender.start();
 	    
 	}
 
@@ -64,15 +74,20 @@ public class Bathroom {
 			this.queueMale.remove(0);
 			h.start();
 			this.usingNow++;
+			System.out.println("Uma pessoa do genero " + h.getGender() + " saiu do banheiro");
 		}
 		if(this.capacity > this.usingNow && this.genderTime == 'F') {
 			Human h = this.queueFemale.get(0);
 			this.queueMale.remove(0);
 			h.start();
 			this.usingNow++;
+			System.out.println("Uma pessoa do genero " + h.getGender() + " saiu do banheiro");
 		}
 	}
-	
+
+	/**
+	*
+	*/
 	public synchronized void changeUsingNow(int value) {
 		this.usingNow = this.usingNow + value;
 	}
@@ -80,7 +95,7 @@ public class Bathroom {
 	/**
 	*
 	*/
-	public synchronized void changeGendeTimer() {
+	public void changeGendeTimer() {
 	    if(this.genderTime == 'M') {
 	      this.genderTime= 'F';
 	      this.GenderTransition = true;
@@ -89,5 +104,18 @@ public class Bathroom {
 	      this.genderTime= 'M';
 	      this.GenderTransition = true;
 	    }
+	}
+	
+	public void addHuman(Human h) {
+		if(h.getGender() == 'M') {
+			this.queueMale.add(h);
+		}
+		else if(h.getGender() == 'F') {
+			this.queueFemale.add(h);
+		}
+	}
+	
+	public char getGenderTime() {
+		return this.genderTime;
 	}
 }
