@@ -1,9 +1,17 @@
 package monitor;
 
+import java.util.Random;
+
 public class Human {
 	private char gender; // 'M' == Male or 'F' to female
 	private int timeToFinish;
 
+	private Monitor monitor;
+	
+	Human(Monitor monitor) {
+		this.monitor = monitor;
+	}
+	
 	public void setGender(char gender) {
 		this.gender = gender;
 	}
@@ -13,9 +21,14 @@ public class Human {
 	}
 
 	public void run() {
-		// pede para entrar no banheiro
-		// enviar ao banheiro mensagem dizendo que entrou
-		// de forma randomica gerar quanto tempo vai levar no banheiro
-		// enviar mensagem ao banheiro dizendo que saiu
+		Random randomGenerator = new Random();
+		int randomInt = randomGenerator.nextInt(10000);
+		try {
+			Thread.sleep(randomInt);
+		}
+		catch(Exception e) {
+			e.getMessage();
+		}
+		monitor.humanOut();
 	}
 }
