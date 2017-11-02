@@ -48,8 +48,8 @@ public class Bathroom {
 		this.usingNow = 0;
 		this.genderTime = gender;
 		this.capacity = capacity;
-	    this.queueMale = new ArrayList<Human>();
-	    this.queueFemale = new ArrayList<Human>();
+	    this.queueMale = new ArrayList<Human>(1000);
+	    this.queueFemale = new ArrayList<Human>(1000);
 	    
 	    this.callNextHuman = new BathroomThread(this, 1);
 	    this.changeGender = new BathroomThread(this, 2);
@@ -70,6 +70,9 @@ public class Bathroom {
 			this.GenderTransition = false;
 		}
 		if(this.capacity > this.usingNow && this.genderTime == 'M') {
+			if(this.queueMale.size() == 0) {
+				return;
+			}
 			Human h = this.queueMale.get(0);
 			this.queueMale.remove(0);
 			h.start();
@@ -77,6 +80,9 @@ public class Bathroom {
 			System.out.println("Uma pessoa do genero " + h.getGender() + " saiu do banheiro");
 		}
 		if(this.capacity > this.usingNow && this.genderTime == 'F') {
+			if(this.queueFemale.size() == 0) {
+				return;
+			}
 			Human h = this.queueFemale.get(0);
 			this.queueMale.remove(0);
 			h.start();
