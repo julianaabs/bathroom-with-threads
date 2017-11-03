@@ -1,11 +1,30 @@
 package monitor;
 
+/**
+ * Classe com as threads referentes ao banheiro.
+ * 
+ * @author Nalbert Gabriel
+ * @version 2.0
+ * @since 11-02-2017
+ * 
+ * 
+ */
+
 import java.lang.Thread;
 
 public class BathroomThread extends Thread {
 	
 	Bathroom bathroom;
 	int type;
+	
+	/**
+	 * 
+	 * Construtor da classe
+	 * 
+	 * @param bathroom
+	 * @param type
+	 * 
+	 */
 	
 	BathroomThread(Bathroom bathroom, int type) {
 		this.bathroom = bathroom;

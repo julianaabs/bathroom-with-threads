@@ -1,5 +1,11 @@
 package monitor;
 
+/**
+ * Classe do monitor que irá administrar as threads.
+ * 
+ * @author Nalbert Gabriel
+ */
+
 import java.lang.Thread;
 import java.util.Random;
 
@@ -9,9 +15,20 @@ public class Monitor extends Thread {
 	
 	Bathroom bathroom;
 	
+	/**
+	 *  Construtor vazio.
+	 *  
+	 * @param bathroom
+	 */
 	public Monitor(Bathroom bathroom) {
 		
 	}
+	
+	/**
+	 *  Método que notifica quando alguém saiu do banheiro, indicando seu gênero e decrementando o número 
+	 *  de pessoas que estão utilizando o banheiro.
+	 * 
+	 */
 	
 	public synchronized void humanOut() {
 		this.bathroom.changeUsingNow(-1);
