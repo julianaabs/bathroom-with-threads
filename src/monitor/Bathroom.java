@@ -1,5 +1,14 @@
 package monitor;
 
+/**
+ *  Classe do banheiro que possui os atributos necessários para seu funcionamento.
+ *  
+ *  @author Juliana Barbosa, Nalbert Gabriel
+ *  @version 2.0
+ *  @since 11-02-2017
+ * 
+ */
+
 import java.util.ArrayList;
 import java.lang.Thread;
 import monitor.Human;
@@ -7,41 +16,44 @@ import monitor.BathroomThread;
 
 public class Bathroom {
 	/**
-	* fila com homens para entrar no banheiro.
+	*	Fila com homens para entrar no banheiro.
 	*/
 	private ArrayList<Human> queueMale;
 	/**
-	* fila com mulheres para entrar no banheiro.
+	*	Fila com mulheres para entrar no banheiro.
 	*/
 	private ArrayList<Human> queueFemale;
 	/**
-	*
+	*	Capacidade do banheiro.
 	*/
 	private int capacity;
 	/**
-	*
+	*	Quantidade de pessoas utilizando o banheiro.
 	*/
 	private int usingNow;
 	/**
-	*
+	*	Gênero da pessoa que entrou no banheiro por último.
 	*/
 	private char genderTime;
 	/**
-	*
+	*	Indica se o gênero das pessoas que estão ocupando o banheiro mudou.
 	*/
 	private boolean GenderTransition;
 	/**
-	*
+	*	Chama a próxima pessoa para entrar no banheiro.
 	*/
 	BathroomThread callNextHuman;
 	/**
-	*
+	*	
 	*/
 	BathroomThread changeGender;
 
 
 	/**
+	*	Construtor da classe.
 	*
+	*	@param capacity
+	*	@param gender
 	*/
 	public Bathroom(int capacity, char gender) {
 		this.GenderTransition = false;
@@ -60,6 +72,8 @@ public class Bathroom {
 	}
 
 	/**
+	*	Chama a próxima pessoa para entrar no banheiro, analisando a capacidade total, o número de pessoas 
+	* que estão no banheiro e o gênero que está ocupando o banheiro.
 	*
 	*/
 	public synchronized void callNext() {
@@ -92,6 +106,10 @@ public class Bathroom {
 	}
 
 	/**
+	* 
+	*  Modifica o número de pessoas que estão usando o banheiro no momento.
+	*  
+	*  @param value
 	*
 	*/
 	public synchronized void changeUsingNow(int value) {
@@ -99,6 +117,9 @@ public class Bathroom {
 	}
 
 	/**
+	*
+	*	Modifica o gênero da pessoa que entrou por último no banheiro e, se for diferente do que estava
+	* antes, modifica GenderTransition para indicar que houve mudança de gênero.
 	*
 	*/
 	public void changeGendeTimer() {
@@ -111,6 +132,13 @@ public class Bathroom {
 	      this.GenderTransition = true;
 	    }
 	}
+	
+	/**
+	 *  Adiciona uma pessoa à fila correspondente ao seu gênero.
+	 *  
+	 *  @param h
+	 * 
+	 */
 	
 	public void addHuman(Human h) {
 		if(h.getGender() == 'M') {
