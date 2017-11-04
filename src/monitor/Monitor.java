@@ -35,6 +35,11 @@ public class Monitor extends Thread {
 		System.out.println("Uma pessoa do genero " + this.bathroom.getGenderTime() + " saiu do banheiro");
 	}
 	
+	/**
+	 * Médoto para criar um humano randomicamente.
+	 * 
+	 */
+	
 	public void createHuman() {
 		Human h;
 		
@@ -49,6 +54,11 @@ public class Monitor extends Thread {
 		this.bathroom.addHuman(h);
 		System.out.println("Pessoa do gênero " + h.getGender() + " entro na fila");
 	}
+	
+	/**
+	 * Método para rodar a thread.
+	 * 
+	 */
 	
 	@Override
 	public void run() {
