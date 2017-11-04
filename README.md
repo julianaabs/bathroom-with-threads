@@ -17,5 +17,10 @@ Para garantir o funcionamento correto da solução, foi necessário analisar qua
 
 O mecanismo de sincronização escolhido para moldar a solução do problema foi o Monitor. Como é necessário o gerenciamento de algumas condições para o bom funcionamento da solução (capacidade do banheiro, tempo de permanência, entrada e saída de pessoas), o monitor em Java garante que a exclusão mútua é aplicada corretamente pela presença de lock em todos os objetos, além da utilização de métodos sincronizados, que acessam os objetos de acordo com os locks.
 
+Dessa forma, a solução do problema foi estruturada com uma classe Monitor que controla o fluxo do banheiro, de modo a evitar os problemas relatados no tópico 2. O monitor é iniciado, executando as threads e populando randomicamente os humanos (Homem ou mulher) para utilizar o banheiro. Ele controla a entrada e saída do banheiro de acordo com o tempo máximo de permanência nele, para evitar que ocorra starvation na entrada de pessoas de outro gênero.
+
+Contudo, o grupo não conseguiu executar com êxito a solução, pois apesar das threads estarem funcionando normalmente sem erros e sem lançar exceções, não ocorre a impressão na tela do andamento das threads (quais indivíduos entraram e saíram do banheiro).
+
+
   
  
