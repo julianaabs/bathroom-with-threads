@@ -1,9 +1,11 @@
-package monitor;
+package monitorVersion;
 
 import java.util.ArrayList;
+
+import monitorVersion.BathroomThread;
+import monitorVersion.Human;
+
 import java.lang.Thread;
-import monitor.Human;
-import monitor.BathroomThread;
 
 public class Bathroom {
 	/**
@@ -56,7 +58,6 @@ public class Bathroom {
 	    
 	    this.callNextHuman.start();
 	    this.changeGender.start();
-	    
 	}
 
 	/**

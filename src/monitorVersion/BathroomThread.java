@@ -1,4 +1,4 @@
-package monitor;
+package monitorVersion;
 
 import java.lang.Thread;
 
@@ -18,6 +18,7 @@ public class BathroomThread extends Thread {
 			// call nex human
 			while(true) {
 				this.bathroom.callNext();
+				System.out.println("OKOK");
 			}
 		}
 		else if(type == 2) {
@@ -25,6 +26,7 @@ public class BathroomThread extends Thread {
 			while(true) {
 				try {
 					Thread.sleep(10000);
+					System.out.println("OKOK");
 				}
 				catch(Exception e) {
 					e.getMessage();

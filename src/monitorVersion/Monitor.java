@@ -1,23 +1,22 @@
-package monitor;
+package monitorVersion;
 
 import java.lang.Thread;
 import java.util.Random;
 
-import monitor.Human;
+import monitorVersion.Human;
 
 public class Monitor extends Thread {
 	
 	Bathroom bathroom;
 	
 	public Monitor(Bathroom bathroom) {
-		
 	}
 	
 	public synchronized void humanOut() {
 		this.bathroom.changeUsingNow(-1);
 		System.out.println("Uma pessoa do genero " + this.bathroom.getGenderTime() + " saiu do banheiro");
 	}
-	
+		
 	public void createHuman() {
 		Human h;
 		
