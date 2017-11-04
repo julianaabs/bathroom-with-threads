@@ -1,5 +1,14 @@
 package lockVersion;
 
+/**
+*
+*	Classe thread de humanos com os atributos para utilização do banheiro.
+*
+*	@author Juliana Barbosa, Nalbert Gabriel
+*	@version 1.0
+*	@since 11-03-2017
+*/
+
 import java.util.Random;
 import java.lang.Thread;
 import java.util.concurrent.TimeUnit;

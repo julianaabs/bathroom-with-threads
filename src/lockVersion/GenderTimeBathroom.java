@@ -1,5 +1,15 @@
 package lockVersion;
 
+
+/**
+ *  Classe que gerencia a mudança de gênero das pessoas do banheiro.
+ *  
+ *  @author Juliana Barbosa, Nalbert Gabriel
+ *  @version 2.0
+ *  @since 11-03-2017
+ * 
+ */
+
 import java.lang.Thread;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;

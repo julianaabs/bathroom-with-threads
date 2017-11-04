@@ -1,5 +1,14 @@
 package lockVersion;
 
+/** 
+*	Classe para gerar randomicamente pessoas para utilizar o banheiro.
+*
+*	@author Juliana Barbosa, Nalbert Gabriel
+*  @version 2.0
+*  @since 11-03-2017
+*
+*/
+
 import java.lang.Thread;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
@@ -38,7 +47,10 @@ public class GenerateHuman extends Thread {
 	public void run() {
 		while(true) {
 			try {
-				// random generation of humans 
+
+				/**
+				*	Gera randomicamente novo humano.
+				*/ 
 				System.out.println("GENERATE HUMAN");				
 				TimeUnit.SECONDS.sleep(this.timeInterval);
 				Human h = this.newHuman();
